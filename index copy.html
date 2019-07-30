@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=News+Cycle&display=swap" rel="stylesheet">
+    <!-- <link  href="script.js"> -->
+</head>
+<body>
+    <h1>Acme Employee Lister</h1>
+    <div class = 'actions'>
+        <div class = 'action' id="first">First</div>
+        <div class = "action" id="previous">Previous</div>
+        <div class = "action" id="number"></div>
+        <div class = "action" id="next">Next</div>
+        <div class = "action" id="last">Last</div>
+    </div>
+    <div class = "titleHeader">
+        <div class = 'titleHeader' id="firstNameTitle">First Name</div>
+        <div class = 'titleHeader' id="lastNameTitle">Last Name</div>
+        <div class = 'titleHeader' id="emailNameTitle">Email</div>
+        <div class = 'titleHeader' id="titleNameTitle">Title</div>
+    </div>
+    <div id = "data">
+        <div id = "content">
+
+        </div>
+    </div>
+
+</body>
+<script>
+    
+    
+    fetch(`https://acme-users-api-rev.herokuapp.com/api/users`)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(myJson){
+    let returnArr = myJson.users  
+    let html = returnArr.map( dataObj => 
+                `<div class= "line"><div class ='firstName'>${dataObj.firstName}</div><div class="lastName">${dataObj.lastName}</div><div class="email">${dataObj.email}</div><div class="title">${dataObj.title}</div></div>`
+            ).join("");
+    
+    data.innerHTML  = html
+        
+
+    })
+
+
+    const data = document.querySelector("#data")
+
+
+    // const render = () => {
+    //     let html = '';
+    //     returnArr.map(dataObj => {
+    //         html += `<div class ='name'>${dataObj.firstName}</div>`.join('')
+    //     })
+    //     data.innerHTML = html;
+    // }
+
+    // render();
+
+</script>
+</html>
